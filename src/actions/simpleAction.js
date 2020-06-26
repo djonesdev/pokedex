@@ -1,6 +1,3 @@
-export const simpleAction = () => dispatch => {
-    dispatch({
-     type: 'SIMPLE_ACTION',
-     payload: 'result_of_simple_action'
-    })
-   }
+import { getPokemonAction } from './actionTypes'
+
+export const getPokemon = () => ({ type: getPokemonAction, payload: 'result_of_pokemon_action' })

@@ -4,6 +4,14 @@ export default (state = {}, action) => {
       return {
        result: action.payload
       }
+      case 'GET_POKEMON':
+        return {
+         result: action.payload
+        }
+      case 'GET_POKEMON_SUCCESS':
+        return {
+         result: action.payload
+        }
      default:
       return state
     }
