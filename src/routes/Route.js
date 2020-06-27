@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter as Router, useParams } from 'react-router-dom';
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
-import { PokemonDetails } from '../pages/PokemonDetail/PokemonDetails.page'
+import PokemonDetails from '../pages/PokemonDetail/PokemonDetails.page';
 import { Provider } from 'react-redux'
 
 import { Header, InfoCard } from '../components';
@@ -23,9 +23,8 @@ export const Routing = ({ store }) => (
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/users" component={Details} />
-          <Route path="/detail" component={Details} />
-          <Route path="/contact" component={Details} />
-          <Route component={Details} />
+          <Route path="/detail" component={PokemonDetails} />
+          <Route path="/signIn" component={Details} />
         </Switch>  
       </div>
     </Router>

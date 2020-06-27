@@ -1,22 +1,32 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Grid, Row, Col } from 'react-flexbox-grid'
+import styled from 'styled-components'
 
 import InfoCard from '../../components/InfoCard'
-import { getPokemon, getPokemonDetails } from '../../actions/simpleAction';
-import PokemonDetails from '../PokemonDetail/PokemonDetails.page';
-import { getSelectedPokemon } from '../../selectors/selectPokemon';
+import { getPokemon, getPokemonDetails, getNextPokemonPage, getPreviousPokemonPage } from '../../actions/simpleAction';
+import { selectSelectedPokemon } from '../../selectors/selectPokemon';
+
+const HomePageButton = styled.button`
+  margin: 30px;
+  font-size: 18px;
+  height: 65px;
+  width: 250px;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 1px 1px 0px 2px rgba (0,0,0,0.3);
+  background: rgb(141,217,252);
+  cursor: pointer;
+`
 
 function Home(props) {
   const getPokemon = (isNextPage) => {
     props.getPokemon(isNextPage);
   }
 
-  console.log(props.selectedPokemon, 'selectedPokemon')
-
   return (
     <div>
-      <button onClick={() => getPokemon(false)}>Get Pokemon!</button>
+      <HomePageButton onClick={() => getPokemon(false)}>Get Pokemon!</HomePageButton>
       <div className="App">
         <Grid fluid>
           <Row>
@@ -29,9 +39,8 @@ function Home(props) {
           </Row>
         </Grid>
       </div>
-      {props.pokemon.result  && <button onClick={() => getPokemon(true)}>Get next 20 Pokemon!</button>}
-      {props.pokemon.result  && <button onClick={() => getPokemon(true)}>Get previous 20 Pokemon!</button>}
-      <PokemonDetails selectedPokemon={props.selectedPokemon}/>
+      {props.pokemon.result  && <HomePageButton onClick={props.getNextPokemonPage}>Get next 20 Pokemon!</HomePageButton>}
+      {props.pokemon.result  && <HomePageButton onClick={props.getPreviousPokemonPage}>Get previous 20 Pokemon!</HomePageButton>}
     </div>
   );  
 }
@@ -39,11 +48,13 @@ function Home(props) {
 const mapStateToProps = state => ({
   ...state,
   pokemon: state.pokemon,
-  selectedPokemon: getSelectedPokemon(state)
+  selectedPokemon: selectSelectedPokemon(state)
 })
 
 const mapDispatchToProps = dispatch => ({
  getPokemon: isNextPage => dispatch(getPokemon(isNextPage)),
+ getNextPokemonPage: () => dispatch(getNextPokemonPage()),
+ getPreviousPokemonPage: () => dispatch(getPreviousPokemonPage()),
  getPokemonDetails: url => dispatch(getPokemonDetails(url))
 })
 

@@ -1,10 +1,15 @@
 import axios from 'axios'
 
 export default {
-    getPokemon: (isNextPage) => {
-        const url = isNextPage ? isNextPage.result.next : `https://pokeapi.co/api/v2/pokemon`
+    getPokemon: () => {
         return axios({
-            url: url,
+            url: `https://pokeapi.co/api/v2/pokemon`,
+            method: 'GET', 
+        })
+    },
+    getPokemonPaginatedPage: (pagniatedUrl) => {
+        return axios({
+            url: pagniatedUrl,
             method: 'GET', 
         })
     },
