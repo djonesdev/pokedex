@@ -1,12 +1,17 @@
 import axios from 'axios'
 
 export default {
-    getPokemon: (payload) => {
-        const url = `https://pokeapi.co/api/v2/pokemon/ditto`
+    getPokemon: (isNextPage) => {
+        const url = isNextPage ? isNextPage.result.next : `https://pokeapi.co/api/v2/pokemon`
         return axios({
             url: url,
             method: 'GET', 
-            data: payload
+        })
+    },
+    getPokemonDetails: (detailsUrl) => {
+        return axios({
+            url: detailsUrl,
+            method: 'GET', 
         })
     }
 }

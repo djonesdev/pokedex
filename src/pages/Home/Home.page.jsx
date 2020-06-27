@@ -2,13 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
-import { InfoCard } from './components'
-import './App.css';
-import { getPokemon, getPokemonDetails } from './actions/simpleAction';
-import PokemonDetails from './pages/PokemonDetail/PokemonDetails.page';
-import { getSelectedPokemon } from './selectors/selectPokemon';
+import InfoCard from '../../components/InfoCard'
+import { getPokemon, getPokemonDetails } from '../../actions/simpleAction';
+import PokemonDetails from '../PokemonDetail/PokemonDetails.page';
+import { getSelectedPokemon } from '../../selectors/selectPokemon';
 
-function App(props) {
+function Home(props) {
   const getPokemon = (isNextPage) => {
     props.getPokemon(isNextPage);
   }
@@ -48,4 +47,4 @@ const mapDispatchToProps = dispatch => ({
  getPokemonDetails: url => dispatch(getPokemonDetails(url))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
