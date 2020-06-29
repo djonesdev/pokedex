@@ -7,12 +7,6 @@ import { Header, InfoCard } from '../components'
 import HomePage from '../pages/Home/Home.page'
 import Favourites from '../pages/Favourites/Favourites.page'
 
-function Details() {  
-  let { name } = useParams();
-  return <div>Now showing post ds</div>;
-}
-
-
 export const Routing = ({ store }) => (
   <Provider store={store}>
     <Router>
@@ -21,12 +15,10 @@ export const Routing = ({ store }) => (
         <hr />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/users" component={Details} />
           <Route path="/detail" component={PokemonDetails} />
           <Route path="/favourites" component={Favourites} />
-          <Route path="/signIn" component={Details} />
         </Switch>  
       </div>
     </Router>
   </Provider>
-);
+)
