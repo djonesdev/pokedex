@@ -13,3 +13,5 @@ export const getPreviousPokemonPageSuccessAction = 'GET_POKEMON_PREVIOUS_PAGE_SU
 export const getPokemonDetailsAction = 'GET_POKEMON_DETAILS'
 export const getPokemonDetailsSuccessAction = 'GET_POKEMON_DETAILS_SUCCESS'
 export const getPokemonDetailsFailedAction = 'GET_POKEMON_DETAILS_FAILED'
+
+export const addToFavouritesAction = 'ADD_TO_FAVOURITES'

@@ -12,10 +12,18 @@ const InfoCardContainer = styled.div`
     font-size: 2vw;
 `
 
+const StyledLink = styled(Link)`
+  color: inherit;
+  :hover {
+      text-decoration: none;
+      color: white;
+  }
+`
+
 export default function InfoCard({ name, onClick, url }) {
     return (
         <InfoCardContainer onClick={() => onClick(url)}>
-            <Link to='/detail'>{name}</Link>
+            <StyledLink to='/detail'>{name}</StyledLink>
         </InfoCardContainer>
     )
 }

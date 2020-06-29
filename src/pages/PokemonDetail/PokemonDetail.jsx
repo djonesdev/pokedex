@@ -1,14 +1,21 @@
 import React from 'react'
 import { Table } from 'reactstrap';
+import { Grid, Row, Col } from 'react-flexbox-grid'
+import { Spinner } from 'reactstrap'
 
-export default function PokemonDetailView({ selectedPokemon }) {
+export default function PokemonDetailView({ selectedPokemon, isLoading, addToFavourites }) {
+    if(isLoading) return <Grid><Spinner style={{ width: '3rem', height: '3rem', margin: 'auto', padding: 10 }} type="grow" /></Grid>
     if(!selectedPokemon) return null
     return (
-        <div>
+        <Grid>
             <p>{selectedPokemon.name}</p>
-            {Object.keys(selectedPokemon.sprites).map(function(key, index) {
-                return <img src={selectedPokemon.sprites[key]} />
-            })}
+            <button onClick={() => addToFavourites({ name: selectedPokemon.name, sprite: selectedPokemon.sprites.front_default })}>Add To Favourties</button>
+            <Row around="xs">
+                {Object.keys(selectedPokemon.sprites).map(function(key, index) {
+                    return <Col xs={1}><img src={selectedPokemon.sprites[key]} /></Col>
+                })}
+            </Row>
+
             {selectedPokemon.abilities.map(abilityList => 
                 <div style={{ margin: 30 }}>
                     <p>{abilityList.ability.name}</p>
@@ -31,6 +38,6 @@ export default function PokemonDetailView({ selectedPokemon }) {
                 </tbody>
             </Table>
 
-        </div>
+        </Grid>
     )
 }

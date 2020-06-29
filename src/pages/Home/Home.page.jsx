@@ -4,8 +4,13 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import styled from 'styled-components'
 
 import InfoCard from '../../components/InfoCard'
-import { getPokemon, getPokemonDetails, getNextPokemonPage, getPreviousPokemonPage } from '../../actions/simpleAction';
-import { selectSelectedPokemon } from '../../selectors/selectPokemon';
+import { 
+  getPokemon, 
+  getPokemonDetails, 
+  getNextPokemonPage, 
+  getPreviousPokemonPage 
+} from '../../actions/simpleAction'
+import { selectSelectedPokemon } from '../../selectors/selectPokemon'
 
 const HomePageButton = styled.button`
   margin: 30px;
@@ -32,7 +37,7 @@ function Home(props) {
           <Row>
             {props.pokemon.result  && props.pokemon.result.results && 
               props.pokemon.result.results.map(pokemon => 
-                <Col xs>
+                <Col xs={3}>
                   <InfoCard key={pokemon.name} name={pokemon.name} onClick={props.getPokemonDetails} url={pokemon.url}/>
                 </Col>
             )}
@@ -52,10 +57,10 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
- getPokemon: isNextPage => dispatch(getPokemon(isNextPage)),
- getNextPokemonPage: () => dispatch(getNextPokemonPage()),
- getPreviousPokemonPage: () => dispatch(getPreviousPokemonPage()),
- getPokemonDetails: url => dispatch(getPokemonDetails(url))
+  getPokemon: isNextPage => dispatch(getPokemon(isNextPage)),
+  getNextPokemonPage: () => dispatch(getNextPokemonPage()),
+  getPreviousPokemonPage: () => dispatch(getPreviousPokemonPage()),
+  getPokemonDetails: url => dispatch(getPokemonDetails(url))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

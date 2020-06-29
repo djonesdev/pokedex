@@ -17,7 +17,19 @@ button {
   box-shadow: 1px 1px 0px 2px rgba (0,0,0,0.3);
   background: rgb(141,217,252);
    cursor: pointer;
- }
+}
+
+button.destructive {
+  margin: 30px;
+  font-size: 18px;
+  height: 65px;
+  width: 250px;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 1px 1px 0px 2px rgba (0,0,0,0.3);
+  background: red;
+   cursor: pointer;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
