@@ -15,3 +15,4 @@ export const getPokemonDetailsSuccessAction = 'GET_POKEMON_DETAILS_SUCCESS'
 export const getPokemonDetailsFailedAction = 'GET_POKEMON_DETAILS_FAILED'
 
 export const addToFavouritesAction = 'ADD_TO_FAVOURITES'
+export const removeFromFavouritesAction = 'REMOVE_FROM_FAVOURITES'

@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 
 import FavouritesView from './Favourites'
 import { selectFavourites } from '../../selectors/selectPokemon'
+import { removeFromFavourites } from '../../actions/simpleAction'
 
-function Favourites({ favouritePokemon }) {
-    console.log(favouritePokemon, 'favouritePokemon')
+function Favourites({ favouritePokemon, removeFromFavourites }) {
     return (
         <div>
-            <FavouritesView favouritePokemon={favouritePokemon} />
+            <FavouritesView favouritePokemon={favouritePokemon} removeFromFavourites={removeFromFavourites} />
         </div>
     )
 }
@@ -19,6 +19,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+    removeFromFavourites: pokemonIndex => dispatch(removeFromFavourites(pokemonIndex))
     // addToFavourites: pokemon => dispatch(addToFavourites(pokemon)),
 })
 

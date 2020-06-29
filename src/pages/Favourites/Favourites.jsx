@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 
-export default function FavouritesView({ favouritePokemon }) {
+export default function FavouritesView({ favouritePokemon, removeFromFavourites }) {
     return (
         <Grid>
         <Grid fluid>
@@ -11,7 +11,7 @@ export default function FavouritesView({ favouritePokemon }) {
                         <div>
                             <img src={pokemon.sprite}/>
                             <p>{pokemon.name}</p>
-                            <button className='destructive'>Remove From Favourites</button>
+                            <button className='destructive' onClick={() => removeFromFavourites(favouritePokemon.indexOf(pokemon))}>Remove From Favourites</button>
                         </div>
                     </Col>
                 )}

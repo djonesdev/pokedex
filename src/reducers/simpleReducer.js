@@ -69,6 +69,14 @@ export default (state = pokemonInitialState, action) => {
             ...state, 
             favouritePokemon: [ ...state.favouritePokemon, action.payload]
           }
+        case 'REMOVE_FROM_FAVOURITES':
+          return {
+            ...state, 
+            favouritePokemon: [
+              ...state.favouritePokemon.slice(0, action.payload),
+              ...state.favouritePokemon.slice(action.payload + 1)
+            ],
+          }
      default:
       return state
     }

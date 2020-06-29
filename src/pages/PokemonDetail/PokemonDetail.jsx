@@ -9,7 +9,7 @@ export default function PokemonDetailView({ selectedPokemon, isLoading, addToFav
     return (
         <Grid>
             <p>{selectedPokemon.name}</p>
-            <button onClick={() => addToFavourites({ name: selectedPokemon.name, sprite: selectedPokemon.sprites.front_default })}>Add To Favourties</button>
+            <button onClick={() => addToFavourites({ name: selectedPokemon.name, sprite: selectedPokemon.sprites.front_default, id: selectedPokemon.id })}>Add To Favourties</button>
             <Row around="xs">
                 {Object.keys(selectedPokemon.sprites).map(function(key, index) {
                     return <Col xs={1}><img src={selectedPokemon.sprites[key]} /></Col>
