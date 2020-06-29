@@ -1,7 +1,14 @@
 import React from 'react'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 
+const FavouritesFallBackView = () => (
+    <Grid>
+        <h3>You have no saved favourites! Add your favourite Pokemon here!</h3>
+    </Grid>
+)
+
 export default function FavouritesView({ favouritePokemon, removeFromFavourites }) {
+    if (!favouritePokemon.length) return ( <FavouritesFallBackView /> )
     return (
         <Grid>
         <Grid fluid>
