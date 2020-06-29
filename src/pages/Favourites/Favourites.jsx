@@ -16,7 +16,7 @@ export default function FavouritesView({ favouritePokemon, removeFromFavourites 
                 {favouritePokemon.map(pokemon => 
                     <Col xs={3}>
                         <div>
-                            <img src={pokemon.sprite}/>
+                            <img alt={pokemon.name} src={pokemon.sprite}/>
                             <p>{pokemon.name}</p>
                             <button className='destructive' onClick={() => removeFromFavourites(favouritePokemon.indexOf(pokemon))}>Remove From Favourites</button>
                         </div>

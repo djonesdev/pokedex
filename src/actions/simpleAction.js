@@ -5,7 +5,8 @@ import {
     getPreviousPokemonPageAction,
     addToFavouritesAction, 
     removeFromFavouritesAction, 
-    getPokemonByGenerationAction
+    getPokemonByGenerationAction, 
+    getPokemonDetailsForComparisonAction
 } from './actionTypes'
 
 export const getPokemon = () => ({ type: getPokemonAction })
@@ -21,3 +22,5 @@ export const getPokemonDetails = payload => ({ type: getPokemonDetailsAction, pa
 export const addToFavourites = pokemon => ({ type: addToFavouritesAction, payload: pokemon})
 
 export const removeFromFavourites = pokemonIndex => ({ type: removeFromFavouritesAction, payload: pokemonIndex})
+
+export const getPokemonDetailsForComparison = pokemonName => ({ type: getPokemonDetailsForComparisonAction, pokemonName })

@@ -10,9 +10,9 @@ class BarChart extends React.Component {
        }
         
         componentDidMount() {                
-
+          console.log(this.props.data, 'data')
             const chartWidth = 500;
-            const chartHeight = 150;
+            const chartHeight = 300;
         
             const svg = d3.select("body")
                           .append("svg")
@@ -28,9 +28,6 @@ class BarChart extends React.Component {
                           const yScale = d3.scaleLinear()
                                            .domain([0, d3.max(this.props.data, (d) => d[1])])
                                            .range([chartHeight - padding, padding]);
-
-            const scale = d3.scaleLinear()
-            const output = scale(50)
         
             svg.selectAll("rect")
                .data(this.props.data)
@@ -90,8 +87,9 @@ class BarChart extends React.Component {
         render() {
             const styles = {
               container: {
-                display: "grid",
-                justifyItems: "center"
+                // display: "grid",
+                // justifyItems: "center",
+                // marginl: 50
               }
             }    
             

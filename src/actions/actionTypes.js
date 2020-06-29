@@ -18,5 +18,9 @@ export const getPokemonDetailsAction = 'GET_POKEMON_DETAILS'
 export const getPokemonDetailsSuccessAction = 'GET_POKEMON_DETAILS_SUCCESS'
 export const getPokemonDetailsFailedAction = 'GET_POKEMON_DETAILS_FAILED'
 
+export const getPokemonDetailsForComparisonAction = 'GET_POKEMON_DETAILS_FOR_COMPARISON'
+export const getPokemonDetailsForComparisonSuccessAction = 'GET_POKEMON_DETAILS_FOR_COMPARISON_SUCCESS'
+export const getPokemonDetailsForComparisonFailedAction = 'GET_POKEMON_DETAILS_FOR_COMPARISON_FAILED'
+
 export const addToFavouritesAction = 'ADD_TO_FAVOURITES'
 export const removeFromFavouritesAction = 'REMOVE_FROM_FAVOURITES'

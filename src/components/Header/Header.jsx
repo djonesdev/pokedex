@@ -12,6 +12,11 @@ const LinkContainer = styled.div`
 
 const StyledNavLink = styled(NavLink)`
   margin: 10%;
+  color: black;
+  :hover {
+    color: white;
+    text-decoration: none;
+  }
 `
 
 

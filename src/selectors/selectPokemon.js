@@ -9,3 +9,5 @@ export const selectSelectedPokemon = state => state.pokemon.selectedPokemon
 export const selectLoadingState = state => state.pokemon.loading
 
 export const selectFavourites = state => state.pokemon.favouritePokemon
+
+export const selectComparisonState = state => state.comparison.pokemonForComparison

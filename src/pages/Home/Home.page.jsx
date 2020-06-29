@@ -33,13 +33,9 @@ const PokemonListContainer = styled.div`
 
 const renderGenerationButtons = (getPokemonByGeneration) => {
   let container = []
-
-  // Outer loop to create parent
   for (let i = 0; i < 7; i++) {
     let children = []
-    //Inner loop to create children
-      children.push(<HomePageButton onClick={() => getPokemonByGeneration(i + 1)}>{`Gen ${i + 1}`}</HomePageButton>)
-    //Create the parent and add the children
+    children.push(<HomePageButton onClick={() => getPokemonByGeneration(i + 1)}>{`Gen ${i + 1}`}</HomePageButton>)
     container.push(children)
   }
   return container

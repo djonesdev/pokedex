@@ -1,4 +1,6 @@
 import { takeLatest, put, select } from 'redux-saga/effects'
+
+import config from '../config'
 import pokemonApi from '../api/pokemonApi'
 import { 
   getPokemonFailedAction, 
@@ -10,7 +12,9 @@ import {
   getPreviousPokemonPageFailedAction, 
   getPreviousPokemonPageSuccessAction,  
   getPokemonByGenerationFailedAction, 
-  getPokemonByGenerationSuccessAction
+  getPokemonByGenerationSuccessAction, 
+  getPokemonDetailsForComparisonSuccessAction, 
+  getPokemonDetailsForComparisonFailedAction
 } from '../actions/actionTypes'
 import { selectNextPokemonPageUrl, selectPreviousPokemonPageUrl } from '../selectors/selectPokemon' 
 
@@ -61,6 +65,25 @@ export function* getPreviousPaginatedPokemon() {
   }
 }
 
+export function* getPokemonStatForComparison(payload) {
+  payload.pokemonName && console.log('saga 1', JSON.stringify(payload.pokemonName))
+  const url = payload.pokemonName && `${config.baseUrl}/pokemon/${payload.pokemonName}`
+  console.log('saga 2', url)
+  try {
+    console.log('saga try 1')
+    const pokemon = yield pokemonApi.getPokemonDetails(url)
+    console.log('saga try 2')
+    yield put({ type: getPokemonDetailsForComparisonSuccessAction, payload: pokemon.data })
+    console.log('saga try 3')
+  }
+  catch (error) {
+    console.log('saga catch 1')
+    yield put({ type: getPokemonDetailsForComparisonFailedAction, error })
+    console.log('saga catch 2')
+    console.log(error)
+  }
+}
+
 export function* getPokemonDetails(actionPayload) {
   const { payload } = actionPayload
   let detailsUrl = ''
@@ -73,7 +96,6 @@ export function* getPokemonDetails(actionPayload) {
     } else {
       detailsUrl = payload
     }
-    console.log(detailsUrl, 'details url ')
     const pokemonDetails = yield pokemonApi.getPokemonDetails(detailsUrl)
     if(!pokemonDetails.id) console.log('no id for some reasons')
     yield put({ type: getPokemonDetailsSuccessAction, payload: pokemonDetails.data })
@@ -90,5 +112,6 @@ export default function* rootSaga() {
   yield takeLatest('GET_POKEMON_NEXT_PAGE', getNextPaginatedPokemon)
   yield takeLatest('GET_POKEMON_PREVIOUS_PAGE', getPreviousPaginatedPokemon)
   yield takeLatest('GET_POKEMON_DETAILS', getPokemonDetails)
+  yield takeLatest('GET_POKEMON_DETAILS_FOR_COMPARISON', getPokemonStatForComparison)
 }
 
