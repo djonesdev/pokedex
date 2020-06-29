@@ -1,0 +1,10 @@
+.bar {
+    width: 25px;
+    height: 150px;
+    display: inline-block;
+    background-color: blue;
+    margin: 2px;
+  }
+.bar:hover {
+  fill: brown;
+}

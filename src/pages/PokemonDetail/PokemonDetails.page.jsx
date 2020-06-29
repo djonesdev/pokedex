@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 import PokemonDetailsView from './PokemonDetail'
@@ -8,7 +8,7 @@ import {
     addToFavourites 
   } from '../../actions/simpleAction'
 
-function PokemonDetails({ selectedPokemon, isLoading, addToFavourites, state }) {
+function PokemonDetails({ selectedPokemon, isLoading, addToFavourites }) {
     return (
         <div>
             <PokemonDetailsView selectedPokemon={selectedPokemon} addToFavourites={addToFavourites} isLoading={isLoading}/>
@@ -19,7 +19,6 @@ function PokemonDetails({ selectedPokemon, isLoading, addToFavourites, state }) 
 const mapStateToProps = state => ({
     selectedPokemon: selectSelectedPokemon(state),
     isLoading: selectLoadingState(state), 
-    state
 })
 
 const mapDispatchToProps = dispatch => ({

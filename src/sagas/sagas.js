@@ -8,8 +8,7 @@ import {
   getNextPokemonSuccessPageAction,
   getNextPokemonFailedPageAction, 
   getPreviousPokemonPageFailedAction, 
-  getPreviousPokemonPageSuccessAction, 
-  getPokemonByGenerationAction, 
+  getPreviousPokemonPageSuccessAction,  
   getPokemonByGenerationFailedAction, 
   getPokemonByGenerationSuccessAction
 } from '../actions/actionTypes'

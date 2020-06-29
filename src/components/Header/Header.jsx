@@ -8,7 +8,6 @@ const LinkContainer = styled.div`
   border-radius: 5px; 
   margin: 5px;
   padding: 10px; 
-  width: 98%;
 `
 
 const StyledNavLink = styled(NavLink)`
@@ -21,7 +20,7 @@ function Header() {
     <LinkContainer>
       <StyledNavLink exact activeClassName="active" to="/">Home</StyledNavLink>
       <StyledNavLink activeClassName="active" to="/favourites">Favourites</StyledNavLink>
-      <StyledNavLink activeClassName="active" to="/signIn">Sign In</StyledNavLink>
+      <StyledNavLink activeClassName="active" to="/compare">Compare</StyledNavLink>
     </LinkContainer>
   );
 }

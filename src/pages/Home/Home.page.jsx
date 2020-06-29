@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import styled from 'styled-components'
+import { Spinner } from 'reactstrap'
 
 import InfoCard from '../../components/InfoCard'
 import { 
@@ -11,7 +12,7 @@ import {
   getNextPokemonPage, 
   getPreviousPokemonPage, 
 } from '../../actions/simpleAction'
-import { selectSelectedPokemon } from '../../selectors/selectPokemon'
+import { selectSelectedPokemon, selectLoadingState, selectPokemon } from '../../selectors/selectPokemon'
 
 const HomePageButton = styled.button`
   margin: 30px;
@@ -25,6 +26,25 @@ const HomePageButton = styled.button`
   cursor: pointer;
 `
 
+const PokemonListContainer = styled.div`
+  text-align: center;
+  width: 98%;
+`
+
+const renderGenerationButtons = (getPokemonByGeneration) => {
+  let container = []
+
+  // Outer loop to create parent
+  for (let i = 0; i < 7; i++) {
+    let children = []
+    //Inner loop to create children
+      children.push(<HomePageButton onClick={() => getPokemonByGeneration(i + 1)}>{`Gen ${i + 1}`}</HomePageButton>)
+    //Create the parent and add the children
+    container.push(children)
+  }
+  return container
+}
+
 function Home(props) {
   const { getPokemon, getPokemonByGeneration } = props
   const hasAvaliableNextPage = props.pokemon.nextUrl
@@ -32,20 +52,20 @@ function Home(props) {
 
   return (
     <div>
-    <HomePageButton onClick={() => getPokemon()}>Get First 20 Pokemon!</HomePageButton>
-      <HomePageButton onClick={() => getPokemonByGeneration(2)}>Get Pokemon generation 2!</HomePageButton>
-      <div className="App">
+      <HomePageButton onClick={() => getPokemon()}>Get First 20 Pokemon!</HomePageButton>
+      {renderGenerationButtons(getPokemonByGeneration)}
+      <PokemonListContainer>
         <Grid fluid>
           <Row>
-            {props.pokemon.result  && props.pokemon.result && 
+            {props.isLoading ? <Spinner style={{ width: '3rem', height: '3rem', margin: 'auto', padding: 10 }} type="grow" />: props.pokemon.result  && props.pokemon.result && 
               props.pokemon.result.map(pokemon => 
-                <Col xs={3}>
+                <Col xs={12} sm={3}>
                   <InfoCard key={pokemon.name} name={pokemon.name} onClick={props.getPokemonDetails} url={pokemon.url}/>
                 </Col>
             )}
           </Row>
         </Grid>
-      </div>
+      </PokemonListContainer>
       {hasAvaliableNextPage  && <HomePageButton onClick={props.getNextPokemonPage}>Get next 20 Pokemon!</HomePageButton>}
       {hasAvailablePreviousPage  && <HomePageButton onClick={props.getPreviousPokemonPage}>Get previous 20 Pokemon!</HomePageButton>}
     </div>
@@ -54,7 +74,8 @@ function Home(props) {
 
 const mapStateToProps = state => ({
   state: state.pokemon,
-  pokemon: state.pokemon,
+  isLoading: selectLoadingState(state), 
+  pokemon: selectPokemon(state),
   selectedPokemon: selectSelectedPokemon(state)
 })
 

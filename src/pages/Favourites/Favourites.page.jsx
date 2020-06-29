@@ -15,12 +15,10 @@ function Favourites({ favouritePokemon, removeFromFavourites }) {
 
 const mapStateToProps = state => ({
     favouritePokemon: selectFavourites(state),
-    state
 })
 
 const mapDispatchToProps = dispatch => ({
     removeFromFavourites: pokemonIndex => dispatch(removeFromFavourites(pokemonIndex))
-    // addToFavourites: pokemon => dispatch(addToFavourites(pokemon)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Favourites)
