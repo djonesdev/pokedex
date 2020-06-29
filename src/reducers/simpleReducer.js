@@ -1,5 +1,7 @@
 const pokemonInitialState = {
   result: [], 
+  nextUrl: '',
+  previousUrl: '',
   isLoading: false, 
   selectedPokemon: {
     sprites: [], 
@@ -19,7 +21,9 @@ export default (state = pokemonInitialState, action) => {
       case 'GET_POKEMON_SUCCESS':
         return {
           ...state,
-          result: action.payload,
+          nextUrl: action.payload.next, 
+          previousUrl: action.payload.previous, 
+          result: action.payload.results,
           isLoading: false
         }
       case 'GET_POKEMON_FAILED':
@@ -28,17 +32,37 @@ export default (state = pokemonInitialState, action) => {
            result: action.payload,
            isLoading: false
         }
-        case 'GET_POKEMON_PREVIOUS_PAGE':
-        case 'GET_POKEMON_NEXT_PAGE':
+        case 'GET_POKEMON_GENERATION':
           return {
             ...state,
            isLoading: true
           }
-        case 'GET_POKEMON_PREVIOUS_PAGE_SUCCESS':
-        case 'GET_POKEMON_NEXT_PAGE_SUCCESS':
+        case 'GET_POKEMON_GENERATION_SUCCESS':
           return {
             ...state,
             result: action.payload,
+            isLoading: false
+          }
+        case 'GET_POKEMON_GENERATION_FAILED':
+          return {
+              ...state,
+             result: action.payload,
+             isLoading: false
+          }
+        case 'GET_POKEMON_PREVIOUS_PAGE':
+        case 'GET_POKEMON_NEXT_PAGE':
+          return {
+            ...state,
+            isLoading: true
+          }
+        case 'GET_POKEMON_PREVIOUS_PAGE_SUCCESS':
+        case 'GET_POKEMON_NEXT_PAGE_SUCCESS':
+          console.log(action.payload, 'next actionPayload')
+          return {
+            ...state,
+            nextUrl: action.payload.next, 
+            previousUrl: action.payload.previous, 
+            result: action.payload.results,
             isLoading: false
           }
         case 'GET_POKEMON_PREVIOUS_PAGE_FAILED':

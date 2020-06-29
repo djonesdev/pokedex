@@ -8,14 +8,17 @@ import {
   getNextPokemonSuccessPageAction,
   getNextPokemonFailedPageAction, 
   getPreviousPokemonPageFailedAction, 
-  getPreviousPokemonPageSuccessAction
+  getPreviousPokemonPageSuccessAction, 
+  getPokemonByGenerationAction, 
+  getPokemonByGenerationFailedAction, 
+  getPokemonByGenerationSuccessAction
 } from '../actions/actionTypes'
 import { selectNextPokemonPageUrl, selectPreviousPokemonPageUrl } from '../selectors/selectPokemon' 
 
-export function* getPokemon(actionPayload) {
-  const { payload } = actionPayload
+export function* getPokemon() {
   try {
     const pokemon = yield pokemonApi.getPokemon()
+    console.log(pokemon.data, 'get pokemon')
     yield put({ type: getPokemonSuccessAction, payload: pokemon.data })
   }
   catch (error) {
@@ -32,6 +35,19 @@ export function* getNextPaginatedPokemon() {
   }
   catch (error) {
     yield put({ type: getNextPokemonFailedPageAction, error })
+    console.log(error)
+  }
+}
+
+export function* getPokemonByGeneration(payload) {
+  const { generationId } = payload 
+  try {
+    const pokemon = yield pokemonApi.getPokemonByGeneration(generationId)
+    console.log(pokemon.data.pokemon_species, 'generation pokemon')
+    yield put({ type: getPokemonByGenerationSuccessAction, payload: pokemon.data.pokemon_species })
+  }
+  catch (error) {
+    yield put({ type: getPokemonByGenerationFailedAction, error })
     console.log(error)
   }
 }
@@ -62,6 +78,7 @@ export function* getPokemonDetails(actionPayload) {
 
 export default function* rootSaga() {
   yield takeLatest('GET_POKEMON', getPokemon)
+  yield takeLatest('GET_POKEMON_GENERATION', getPokemonByGeneration)
   yield takeLatest('GET_POKEMON_NEXT_PAGE', getNextPaginatedPokemon)
   yield takeLatest('GET_POKEMON_PREVIOUS_PAGE', getPreviousPaginatedPokemon)
   yield takeLatest('GET_POKEMON_DETAILS', getPokemonDetails)

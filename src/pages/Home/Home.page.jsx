@@ -6,9 +6,10 @@ import styled from 'styled-components'
 import InfoCard from '../../components/InfoCard'
 import { 
   getPokemon, 
+  getPokemonByGeneration,
   getPokemonDetails, 
   getNextPokemonPage, 
-  getPreviousPokemonPage 
+  getPreviousPokemonPage, 
 } from '../../actions/simpleAction'
 import { selectSelectedPokemon } from '../../selectors/selectPokemon'
 
@@ -25,18 +26,19 @@ const HomePageButton = styled.button`
 `
 
 function Home(props) {
-  const getPokemon = (isNextPage) => {
-    props.getPokemon(isNextPage);
-  }
+  const { getPokemon, getPokemonByGeneration } = props
+
+  console.log(props.pokemon, 'state')
 
   return (
     <div>
-      <HomePageButton onClick={() => getPokemon(false)}>Get Pokemon!</HomePageButton>
+      <HomePageButton onClick={() => getPokemon()}>Get Pokemon!</HomePageButton>
+      <HomePageButton onClick={() => getPokemonByGeneration(2)}>Get Pokemon generation 2!</HomePageButton>
       <div className="App">
         <Grid fluid>
           <Row>
-            {props.pokemon.result  && props.pokemon.result.results && 
-              props.pokemon.result.results.map(pokemon => 
+            {props.pokemon.result  && props.pokemon.result && 
+              props.pokemon.result.map(pokemon => 
                 <Col xs={3}>
                   <InfoCard key={pokemon.name} name={pokemon.name} onClick={props.getPokemonDetails} url={pokemon.url}/>
                 </Col>
@@ -51,13 +53,14 @@ function Home(props) {
 }
 
 const mapStateToProps = state => ({
-  ...state,
+  state: state.pokemon,
   pokemon: state.pokemon,
   selectedPokemon: selectSelectedPokemon(state)
 })
 
 const mapDispatchToProps = dispatch => ({
-  getPokemon: isNextPage => dispatch(getPokemon(isNextPage)),
+  getPokemon: () => dispatch(getPokemon()),
+  getPokemonByGeneration: generationId => dispatch(getPokemonByGeneration(generationId)),
   getNextPokemonPage: () => dispatch(getNextPokemonPage()),
   getPreviousPokemonPage: () => dispatch(getPreviousPokemonPage()),
   getPokemonDetails: url => dispatch(getPokemonDetails(url))

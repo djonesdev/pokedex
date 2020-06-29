@@ -1,8 +1,8 @@
 export const selectPokemon = state => state.pokemon
 
-export const selectNextPokemonPageUrl = state => state.pokemon.result.next
+export const selectNextPokemonPageUrl = state => state.pokemon.nextUrl
 
-export const selectPreviousPokemonPageUrl = state => state.pokemon.result.previous
+export const selectPreviousPokemonPageUrl = state => state.pokemon.previousUrl
 
 export const selectSelectedPokemon = state => state.pokemon.selectedPokemon
 

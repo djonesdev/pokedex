@@ -4,10 +4,13 @@ import {
     getNextPokemonPageAction, 
     getPreviousPokemonPageAction,
     addToFavouritesAction, 
-    removeFromFavouritesAction 
+    removeFromFavouritesAction, 
+    getPokemonByGenerationAction
 } from './actionTypes'
 
-export const getPokemon = isNextPage => ({ type: getPokemonAction, payload: isNextPage })
+export const getPokemon = () => ({ type: getPokemonAction })
+
+export const getPokemonByGeneration = generationId => ({ type: getPokemonByGenerationAction, generationId })
 
 export const getNextPokemonPage = () => ({ type: getNextPokemonPageAction })
 

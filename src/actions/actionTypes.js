@@ -2,6 +2,10 @@ export const getPokemonAction = 'GET_POKEMON'
 export const getPokemonFailedAction = 'GET_POKEMON_FAILED'
 export const getPokemonSuccessAction = 'GET_POKEMON_SUCCESS'
 
+export const getPokemonByGenerationAction = 'GET_POKEMON_GENERATION'
+export const getPokemonByGenerationFailedAction = 'GET_POKEMON_GENERATION_FAILED'
+export const getPokemonByGenerationSuccessAction = 'GET_POKEMON_GENERATION_SUCCESS'
+
 export const getNextPokemonPageAction = 'GET_POKEMON_NEXT_PAGE'
 export const getNextPokemonFailedPageAction = 'GET_POKEMON_NEXT_PAGE_FAILED'
 export const getNextPokemonSuccessPageAction = 'GET_POKEMON_NEXT_PAGE_SUCCESS'
