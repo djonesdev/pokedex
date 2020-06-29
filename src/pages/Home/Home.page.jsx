@@ -27,12 +27,12 @@ const HomePageButton = styled.button`
 
 function Home(props) {
   const { getPokemon, getPokemonByGeneration } = props
-
-  console.log(props.pokemon, 'state')
+  const hasAvaliableNextPage = props.pokemon.nextUrl
+  const hasAvailablePreviousPage = props.pokemon.previousUrl
 
   return (
     <div>
-      <HomePageButton onClick={() => getPokemon()}>Get Pokemon!</HomePageButton>
+    <HomePageButton onClick={() => getPokemon()}>Get First 20 Pokemon!</HomePageButton>
       <HomePageButton onClick={() => getPokemonByGeneration(2)}>Get Pokemon generation 2!</HomePageButton>
       <div className="App">
         <Grid fluid>
@@ -46,8 +46,8 @@ function Home(props) {
           </Row>
         </Grid>
       </div>
-      {props.pokemon.result  && <HomePageButton onClick={props.getNextPokemonPage}>Get next 20 Pokemon!</HomePageButton>}
-      {props.pokemon.result  && <HomePageButton onClick={props.getPreviousPokemonPage}>Get previous 20 Pokemon!</HomePageButton>}
+      {hasAvaliableNextPage  && <HomePageButton onClick={props.getNextPokemonPage}>Get next 20 Pokemon!</HomePageButton>}
+      {hasAvailablePreviousPage  && <HomePageButton onClick={props.getPreviousPokemonPage}>Get previous 20 Pokemon!</HomePageButton>}
     </div>
   );  
 }

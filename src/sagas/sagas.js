@@ -18,7 +18,6 @@ import { selectNextPokemonPageUrl, selectPreviousPokemonPageUrl } from '../selec
 export function* getPokemon() {
   try {
     const pokemon = yield pokemonApi.getPokemon()
-    console.log(pokemon.data, 'get pokemon')
     yield put({ type: getPokemonSuccessAction, payload: pokemon.data })
   }
   catch (error) {
@@ -43,7 +42,6 @@ export function* getPokemonByGeneration(payload) {
   const { generationId } = payload 
   try {
     const pokemon = yield pokemonApi.getPokemonByGeneration(generationId)
-    console.log(pokemon.data.pokemon_species, 'generation pokemon')
     yield put({ type: getPokemonByGenerationSuccessAction, payload: pokemon.data.pokemon_species })
   }
   catch (error) {
@@ -66,8 +64,19 @@ export function* getPreviousPaginatedPokemon() {
 
 export function* getPokemonDetails(actionPayload) {
   const { payload } = actionPayload
+  let detailsUrl = ''
   try {
-    const pokemonDetails = yield pokemonApi.getPokemonDetails(payload)
+    // I'm not a fan of this, but for some reason the details url provided when filtering by generation goes to /pokemon-species/:id and doesn't contain sprites
+    // But when calling all pokemon the detail url provided (/pokemon/:id) does
+    if(payload.includes('pokemon-species')) {
+      const pokemonId = payload.split("pokemon-species/").pop()
+      detailsUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
+    } else {
+      detailsUrl = payload
+    }
+    console.log(detailsUrl, 'details url ')
+    const pokemonDetails = yield pokemonApi.getPokemonDetails(detailsUrl)
+    if(!pokemonDetails.id) console.log('no id for some reasons')
     yield put({ type: getPokemonDetailsSuccessAction, payload: pokemonDetails.data })
   }
   catch (error) {

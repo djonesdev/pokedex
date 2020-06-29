@@ -40,6 +40,8 @@ export default (state = pokemonInitialState, action) => {
         case 'GET_POKEMON_GENERATION_SUCCESS':
           return {
             ...state,
+            nextUrl: '', 
+            previousUrl: '', 
             result: action.payload,
             isLoading: false
           }
@@ -57,7 +59,6 @@ export default (state = pokemonInitialState, action) => {
           }
         case 'GET_POKEMON_PREVIOUS_PAGE_SUCCESS':
         case 'GET_POKEMON_NEXT_PAGE_SUCCESS':
-          console.log(action.payload, 'next actionPayload')
           return {
             ...state,
             nextUrl: action.payload.next, 

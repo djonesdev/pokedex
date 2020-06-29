@@ -1,15 +1,17 @@
 import axios from 'axios'
 
+import config from '../config'
+
 export default {
     getPokemon: () => {
         return axios({
-            url: `https://pokeapi.co/api/v2/pokemon`,
+            url: `${config.baseUrl}/pokemon`,
             method: 'GET', 
         })
     },
     getPokemonByGeneration: generationId => {
         return axios({
-            url: `https://pokeapi.co/api/v2/generation/${generationId}`,
+            url: `${config.baseUrl}/generation/${generationId}`,
             method: 'GET', 
         })
     },
