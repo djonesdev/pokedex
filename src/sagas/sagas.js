@@ -29,6 +29,17 @@ export function* getPokemon() {
   }
 }
 
+export function* getAllPokemon() {
+  try {
+    const pokemon = yield pokemonApi.getAllPokemon()
+    yield put({ type: getPokemonSuccessAction, payload: pokemon.data })
+  }
+  catch (error) {
+    yield put({ type: getPokemonFailedAction, error })
+    console.log(error)
+  }
+}
+
 export function* getNextPaginatedPokemon() {
   const url = yield select(selectNextPokemonPageUrl)
   try {
@@ -66,20 +77,13 @@ export function* getPreviousPaginatedPokemon() {
 }
 
 export function* getPokemonStatForComparison(payload) {
-  payload.pokemonName && console.log('saga 1', JSON.stringify(payload.pokemonName))
-  const url = payload.pokemonName && `${config.baseUrl}/pokemon/${payload.pokemonName}`
-  console.log('saga 2', url)
+  const url = payload.pokemonName ? `${config.baseUrl}/pokemon/${payload.pokemonName}` : `${config.baseUrl}/pokemon/${payload.payload.newPokemon.name}`
   try {
-    console.log('saga try 1')
     const pokemon = yield pokemonApi.getPokemonDetails(url)
-    console.log('saga try 2')
     yield put({ type: getPokemonDetailsForComparisonSuccessAction, payload: pokemon.data })
-    console.log('saga try 3')
   }
   catch (error) {
-    console.log('saga catch 1')
     yield put({ type: getPokemonDetailsForComparisonFailedAction, error })
-    console.log('saga catch 2')
     console.log(error)
   }
 }
@@ -108,10 +112,11 @@ export function* getPokemonDetails(actionPayload) {
 
 export default function* rootSaga() {
   yield takeLatest('GET_POKEMON', getPokemon)
+  yield takeLatest('GET_ALL_POKEMON', getAllPokemon)
   yield takeLatest('GET_POKEMON_GENERATION', getPokemonByGeneration)
   yield takeLatest('GET_POKEMON_NEXT_PAGE', getNextPaginatedPokemon)
   yield takeLatest('GET_POKEMON_PREVIOUS_PAGE', getPreviousPaginatedPokemon)
   yield takeLatest('GET_POKEMON_DETAILS', getPokemonDetails)
-  yield takeLatest('GET_POKEMON_DETAILS_FOR_COMPARISON', getPokemonStatForComparison)
+  yield takeLatest(['GET_POKEMON_DETAILS_FOR_COMPARISON', 'REMOVE_POKEMON_FOR_COMPARISON'], getPokemonStatForComparison)
 }
 

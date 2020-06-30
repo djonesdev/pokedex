@@ -3,16 +3,27 @@ const pokemonInitialState = {
   }
   
   export default (state = pokemonInitialState, action) => {
+    console.log(action.type, 'reducer action type')
      switch (action.type) {
-            case 'GET_POKEMON_DETAILS_FOR_COMPARISON':
+            case 'REMOVE_POKEMON_FOR_COMPARISON':
               return {
                 ...state,
-                isLoading: true
+                pokemonForComparison: action.payload.filteredPokemon
               }
+              case 'GET_POKEMON_DETAILS_FOR_COMPARISON':
+                return {
+                  ...state,
+                  isLoading: true
+                }
           case 'GET_POKEMON_DETAILS_FOR_COMPARISON_SUCCESS':
+            let newComparisonPokemon = action.payload
+            if(state.pokemonForComparison.includes(undefined)) {
+              console.log(state.pokemonForComparison.indexOf(undefined), 'newComparison')
+              newComparisonPokemon = state.pokemonForComparison.splice(state.pokemonForComparison.indexOf(undefined), 1, action.payload)
+            }
             return {
               ...state,
-              pokemonForComparison: [...state.pokemonForComparison, action.payload],
+              pokemonForComparison: [...state.pokemonForComparison, newComparisonPokemon],
               isLoading: false
             }
             case 'GET_POKEMON_DETAILS_FOR_COMPARISON_FAILED':

@@ -1,92 +1,48 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { Container, Row, Col } from 'reactstrap';
 
-import BarChart from '../../components/StatsChart/StatsChart'
+import StatsChart2 from '../../components/StatsChart/StatsChart2'
 import { selectFavourites } from '../../selectors/selectPokemon'
-import SearchDropDown from '../../components/SearchableDropDown/SearchDropDown'
 import { 
   getPokemon, 
   getPokemonByGeneration,
   getPokemonDetailsForComparison, 
+  removeFromComparisonPokemon, 
+  getAllPokemon,
 } from '../../actions/simpleAction'
 import { selectPokemon, selectComparisonState } from '../../selectors/selectPokemon'
+import ComparisonView from './Comparison'
 
 function Comparison(props) {
-  const [pokemonNames, setPokemonNames] = useState([])
-  const [poekmonStats, setPokemonStats] = useState()
-  const [comparisonPokemon, setComparisonPokemon] = useState([])
+
+  const[pokemonForComparison, setPokemonForComparison] = useState([])
 
   useEffect(() => {
-    props.getPokemon()
-  }, [getPokemon])
+    props.getAllPokemon()
+  }, [getAllPokemon])
 
-  // useEffect(() => {
-  //   props.getPokemonDetailsForComparison(comparisonPokemon[0])
-  //   console.log('useEffect called!')
-  // }, [getPokemonDetailsForComparison, comparisonPokemon])
+  useEffect(() => {
+    setPokemonForComparison([ ...props.pokemonForComparison ])
+  }, [props.pokemonForComparison])
   
-  useEffect(() => {
-    if(props.pokemon.result) {
-      const namesArray = props.pokemon.result.map(pokemon => pokemon.name)
-      setPokemonNames(namesArray)
+  const onClickDropDownItem = (newComparisonPokemon, index) => {
+    if(pokemonForComparison.length >= 2) {
+      const filteredPokemon = pokemonForComparison.filter(pokemon => pokemon.name !== pokemonForComparison[index].name)
+      props.removeFromComparisonPokemon(filteredPokemon, newComparisonPokemon)
+    } else {
+      alert('in the right bit')
+      props.getPokemonDetailsForComparison(newComparisonPokemon.name)
     }
-  }, [props.pokemon.result])
-
-  const onClickDropDownItem = (newComparisonPokemon) => {
-    console.log(newComparisonPokemon, 'newComparison')
-    props.getPokemonDetailsForComparison(newComparisonPokemon.name)
-    setComparisonPokemon(props.pokemonForComparison.pokemonForComparison)
   }
 
-  const firstPokemonStats = props.pokemonForComparison.map(pokemon => pokemon.stats)
-  const firstPokemonBaseStats = firstPokemonStats[0] && firstPokemonStats[0].map(stat => stat.base_stat)
-  const seconodPokemonBaseStats = firstPokemonStats[1] && firstPokemonStats[1].map(stat => stat.base_stat)
-
-  const dataset1 = firstPokemonStats.map(stat => stat.base_stat)
-  const dataset2 = [23, 23, 2, 14, 5, 11, 23, 3, 9]
-  if(props.pokemonForComparison) {
-    props.pokemonForComparison.map(pokemon => pokemon.stats.map(stat => stat.base_stat))
-  }
-
-  const dropDownDisabled = props.pokemonForComparison.length >= 2
-  const firstPokemonName = props.pokemonForComparison[0] && props.pokemonForComparison[0].name
-
-  console.log(seconodPokemonBaseStats, 'dataset1')
-
+  const isDropDownDisabled = props.pokemonForComparison.length >= 2
     return (
-      <Container>
-        <Row xs="3">
-          <Col>
-            <SearchDropDown 
-              placeholder="Search for pokemon here" 
-              disabled={dropDownDisabled} 
-              onClick={onClickDropDownItem} 
-              items={props.pokemon.result}
-            />
-          </Col>
-          <Col>
-            <SearchDropDown 
-              placeholder="Search for pokemon here" 
-              disabled={dropDownDisabled} 
-              onClick={onClickDropDownItem} 
-              items={props.pokemon.result}
-            />
-          </Col>
-        </Row> 
-        <Row xs="2">
-          {props.pokemonForComparison[0] && <Col>
-            <img alt={'pokemonSprite'} src={props.pokemonForComparison[0].sprites.front_default} />
-            <p>{props.pokemonForComparison[0] && props.pokemonForComparison[0].name}</p>
-            <BarChart data={firstPokemonBaseStats} />
-          </Col>}
-          {props.pokemonForComparison[1] && <Col>
-            <img alt={props.pokemonForComparison[1]} src={props.pokemonForComparison[1].sprites.front_default} />
-            <p>{props.pokemonForComparison[1] && props.pokemonForComparison[1].name}</p>
-            <BarChart data={seconodPokemonBaseStats} />
-          </Col>}
-        </Row>
-      </Container> 
+      <ComparisonView 
+        dropDownDisabled={isDropDownDisabled} 
+        onClickDropDownItem={onClickDropDownItem} 
+        pokemonForComparison={props.pokemonForComparison}
+        pokemonDropDownData={props.pokemon.result}
+      />
     )
 }
 
@@ -94,13 +50,13 @@ const mapStateToProps = state => ({
     favouritePokemon: selectFavourites(state),
     pokemon: selectPokemon(state),
     pokemonForComparison: selectComparisonState(state),
-    state, 
 })
 
 const mapDispatchToProps = dispatch => ({
-  getPokemon: () => dispatch(getPokemon()),
+  getAllPokemon: () => dispatch(getAllPokemon()),
   getPokemonDetailsForComparison: pokemonName => dispatch(getPokemonDetailsForComparison(pokemonName)),
   getPokemonByGeneration: generationId => dispatch(getPokemonByGeneration(2)),
+  removeFromComparisonPokemon: (filteredPokemon, newPokemon) => dispatch(removeFromComparisonPokemon(filteredPokemon, newPokemon))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comparison)

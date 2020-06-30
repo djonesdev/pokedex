@@ -3,9 +3,10 @@ import { Dropdown, DropdownMenu, DropdownToggle, Input, DropdownItem } from 'rea
 
 const SearchDropDown = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false)
-  const [filteredItems, setFilteredItems] = useState(props.items)
+  const [filteredItems, setFilteredItems] = useState([])
 
   const toggle = () => setDropdownOpen(prevState => !prevState)
+
 
   useEffect(() => {
     setFilteredItems(props.items)
@@ -14,12 +15,11 @@ const SearchDropDown = (props) => {
   const handleOnChange = (event) => {
     const filteredItemsList = props.items.filter(item => item.includes(event.target.value))
     setFilteredItems(filteredItemsList)
-    console.log(filteredItems)
   }
 
-  const handleClick = (item) => {
+  const handleClick = (item, index) => {
     toggle()
-    props.onClick(item)
+    props.onClick(item, index)
   }
 
   return (
@@ -44,11 +44,11 @@ const SearchDropDown = (props) => {
                 overflow: 'auto',
                 maxHeight: '250px',
               },
-            };
+            }
           },
         },
     }}>
-        {filteredItems.map((item, index) => <DropdownItem onClick={() => handleClick(item)} key={index}>{item.name}</DropdownItem>)}
+        {filteredItems.map((item, index) => <DropdownItem onClick={() => handleClick(item, props.index)} key={index}>{item.name}</DropdownItem>)}
       </DropdownMenu>
     </Dropdown>
   )

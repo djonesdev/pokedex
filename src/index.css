@@ -7,6 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+p.capitalize {
+  text-transform: capitalize;
+}
+
 button {
   margin: 30px;
   font-size: 18px;

@@ -6,10 +6,14 @@ import {
     addToFavouritesAction, 
     removeFromFavouritesAction, 
     getPokemonByGenerationAction, 
-    getPokemonDetailsForComparisonAction
+    getPokemonDetailsForComparisonAction, 
+    removeFromComparisonPokemonAction, 
+    getAllPokemonAction
 } from './actionTypes'
 
 export const getPokemon = () => ({ type: getPokemonAction })
+
+export const getAllPokemon = () => ({ type: getAllPokemonAction })
 
 export const getPokemonByGeneration = generationId => ({ type: getPokemonByGenerationAction, generationId })
 
@@ -22,5 +26,7 @@ export const getPokemonDetails = payload => ({ type: getPokemonDetailsAction, pa
 export const addToFavourites = pokemon => ({ type: addToFavouritesAction, payload: pokemon})
 
 export const removeFromFavourites = pokemonIndex => ({ type: removeFromFavouritesAction, payload: pokemonIndex})
+
+export const removeFromComparisonPokemon = (filteredPokemon, newPokemon) => ({ type: removeFromComparisonPokemonAction, payload: { filteredPokemon, newPokemon}})
 
 export const getPokemonDetailsForComparison = pokemonName => ({ type: getPokemonDetailsForComparisonAction, pokemonName })

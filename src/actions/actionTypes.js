@@ -2,6 +2,10 @@ export const getPokemonAction = 'GET_POKEMON'
 export const getPokemonFailedAction = 'GET_POKEMON_FAILED'
 export const getPokemonSuccessAction = 'GET_POKEMON_SUCCESS'
 
+export const getAllPokemonAction = 'GET_ALL_POKEMON'
+export const getAllPokemonFailedAction = 'GET_ALL_POKEMON_FAILED'
+export const getAllPokemonSuccessAction = 'GET_ALL_POKEMON_SUCCESS'
+
 export const getPokemonByGenerationAction = 'GET_POKEMON_GENERATION'
 export const getPokemonByGenerationFailedAction = 'GET_POKEMON_GENERATION_FAILED'
 export const getPokemonByGenerationSuccessAction = 'GET_POKEMON_GENERATION_SUCCESS'
@@ -24,3 +28,5 @@ export const getPokemonDetailsForComparisonFailedAction = 'GET_POKEMON_DETAILS_F
 
 export const addToFavouritesAction = 'ADD_TO_FAVOURITES'
 export const removeFromFavouritesAction = 'REMOVE_FROM_FAVOURITES'
+
+export const removeFromComparisonPokemonAction = 'REMOVE_POKEMON_FOR_COMPARISON'

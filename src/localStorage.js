@@ -2,10 +2,8 @@ export const loadStateFromLocalStorage = () => {
     try {
         const serializedState = localStorage.getItem('state')
         if(serializedState === null ) {
-            console.log('null localStorageState')
             return undefined
         }
-        console.log('has serializedState')
         return JSON.parse(serializedState)
     } catch (error) {
         console.log(error, 'gone to catch localStorageState')

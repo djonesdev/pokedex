@@ -9,6 +9,12 @@ export default {
             method: 'GET', 
         })
     },
+    getAllPokemon: () => {
+        return axios({
+            url: `${config.baseUrl}/pokemon/?limit=811`,
+            method: 'GET', 
+        })
+    },
     getPokemonByGeneration: generationId => {
         return axios({
             url: `${config.baseUrl}/generation/${generationId}`,
