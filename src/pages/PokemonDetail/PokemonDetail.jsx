@@ -37,7 +37,6 @@ export default function PokemonDetailView({ selectedPokemon, isLoading, addToFav
     )
     //TODO: redirect or call detailsfrom routeParams
     if(!selectedPokemon) return null
-
     return (
         <Container>
             <MarginedDiv>
@@ -86,7 +85,8 @@ export default function PokemonDetailView({ selectedPokemon, isLoading, addToFav
                 <tbody>
                     {selectedPokemon.moves.map((move, index) => 
                         <tr key={index}>
-                            <td>{move.move.name}</td>          
+                            <td>{move.move.name}</td>     
+                            <td>{move.version_group_details[0].level_learned_at}</td>
                         </tr>
                     )}
                 </tbody>
