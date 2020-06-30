@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
-import StatsChart2 from '../../components/StatsChart/StatsChart2'
 import { selectFavourites } from '../../selectors/selectPokemon'
 import { 
-  getPokemon, 
   getPokemonByGeneration,
   getPokemonDetailsForComparison, 
   removeFromComparisonPokemon, 
@@ -19,18 +17,17 @@ function Comparison(props) {
 
   useEffect(() => {
     props.getAllPokemon()
-  }, [getAllPokemon])
+  }, [props])
 
   useEffect(() => {
     setPokemonForComparison([ ...props.pokemonForComparison ])
-  }, [props.pokemonForComparison])
+  }, [props])
   
   const onClickDropDownItem = (newComparisonPokemon, index) => {
     if(pokemonForComparison.length >= 2) {
       const filteredPokemon = pokemonForComparison.filter(pokemon => pokemon.name !== pokemonForComparison[index].name)
       props.removeFromComparisonPokemon(filteredPokemon, newComparisonPokemon)
     } else {
-      alert('in the right bit')
       props.getPokemonDetailsForComparison(newComparisonPokemon.name)
     }
   }

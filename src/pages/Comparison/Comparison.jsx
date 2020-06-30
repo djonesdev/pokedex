@@ -1,20 +1,8 @@
 import React from 'react'
-import { Container, Row, Col } from 'reactstrap';
-import styled from 'styled-components'
+import { Container, Row, Col } from 'reactstrap'
 
 import StatsChart2 from '../../components/StatsChart/StatsChart2'
 import SearchDropDown from '../../components/SearchableDropDown/SearchDropDown'
-import { 
-  getPokemon, 
-  getPokemonByGeneration,
-  getPokemonDetailsForComparison, 
-} from '../../actions/simpleAction'
-import { selectPokemon, selectComparisonState } from '../../selectors/selectPokemon'
-import Icons from '../../styles/icons'
-
-const PokemonName = styled.p`
-    text-transform: capialize;
-`
 
 export default function ComparisonView(props) {
     return (

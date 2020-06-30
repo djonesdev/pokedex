@@ -3,7 +3,6 @@ const pokemonInitialState = {
   }
   
   export default (state = pokemonInitialState, action) => {
-    console.log(action.type, 'reducer action type')
      switch (action.type) {
             case 'REMOVE_POKEMON_FOR_COMPARISON':
               return {

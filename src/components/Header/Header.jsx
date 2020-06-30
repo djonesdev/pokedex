@@ -7,18 +7,20 @@ const LinkContainer = styled.div`
   text-align: center; 
   border-radius: 5px; 
   margin: 5px;
-  padding: 10px; 
+  padding: 30px; 
 `
 
 const StyledNavLink = styled(NavLink)`
   margin: 10%;
   color: black;
+  padding: 30px;
+  border-radius: 12px;
   :hover {
     color: white;
     text-decoration: none;
+    background: #a30000;
   }
 `
-
 
 function Header() {
   return (

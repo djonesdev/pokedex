@@ -8,16 +8,16 @@ const FavouritesFallBackView = () => (
 )
 
 export default function FavouritesView({ favouritePokemon, removeFromFavourites }) {
-    if (!favouritePokemon.length) return ( <FavouritesFallBackView /> )
+    if (!favouritePokemon.length) return <FavouritesFallBackView />
     return (
         <Grid>
         <Grid fluid>
             <Row>
                 {favouritePokemon.map(pokemon => 
                     <Col xs={3}>
-                        <div>
+                        <div style={{ textAlign: "center"}}>
                             <img alt={pokemon.name} src={pokemon.sprite}/>
-                            <p>{pokemon.name}</p>
+                            <p className="capitalize">{pokemon.name}</p>
                             <button className='destructive' onClick={() => removeFromFavourites(favouritePokemon.indexOf(pokemon))}>Remove From Favourites</button>
                         </div>
                     </Col>

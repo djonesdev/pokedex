@@ -1,13 +1,10 @@
-import CanvasJSReact from '../../lib/canvasjs.react';
-
-
 import React from 'react'
+
+import CanvasJSReact from '../../lib/canvasjs.react'
 
 export default function StatsChart2(props) {
     const pokemonStatData = props.data.map(stat => ({ label: stat.stat.name, y: stat.base_stat}))
-
-    const CanvasJS = CanvasJSReact.CanvasJS;
-    const CanvasJSChart = CanvasJSReact.CanvasJSChart;
+    const CanvasJSChart = CanvasJSReact.CanvasJSChart
     const options = {
         title: {
           text: "Stats"
@@ -23,7 +20,7 @@ export default function StatsChart2(props) {
         <div>
           <CanvasJSChart options={options} />
         </div>
-      );
+      )
 }
 
 

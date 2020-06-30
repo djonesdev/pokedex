@@ -3,11 +3,10 @@ import styled from 'styled-components'
 import {
     Link,
   } from "react-router-dom"
-import config from '../config'
 
-//TODO take media query from config
 const InfoCardContainer = styled.div`
     background: #FF0000;
+    border-radius: 12px;
     width: 100%;
     margin: 3%;
     font-size: 2vw;
@@ -26,10 +25,10 @@ const StyledLink = styled(Link)`
   }
 `
 
-export default function InfoCard({ name, onClick, url }) {
+export default function InfoCard({ name, onClick, url, index }) {
     return (
         <InfoCardContainer onClick={() => onClick(url)}>
-            <StyledLink to='/detail'>{name}</StyledLink>
+            <StyledLink className="capitalize" to='/detail'>{name}</StyledLink>
         </InfoCardContainer>
     )
 }
