@@ -116,6 +116,6 @@ export default function* rootSaga() {
   yield takeLatest('GET_POKEMON_NEXT_PAGE', getNextPaginatedPokemon)
   yield takeLatest('GET_POKEMON_PREVIOUS_PAGE', getPreviousPaginatedPokemon)
   yield takeLatest('GET_POKEMON_DETAILS', getPokemonDetails)
-  yield takeLatest(['GET_POKEMON_DETAILS_FOR_COMPARISON', 'REMOVE_POKEMON_FOR_COMPARISON'], getPokemonStatForComparison)
+  yield takeLatest('GET_POKEMON_DETAILS_FOR_COMPARISON', getPokemonStatForComparison)
 }
 

@@ -19,12 +19,11 @@ function Comparison(props) {
 
   
   const onClickDropDownItem = (newComparisonPokemon, index) => {
-    if(pokemonForComparison.length >= 2) {
-      const filteredPokemon = pokemonForComparison.filter(pokemon => pokemon.name !== pokemonForComparison[index].name)
-      removeFromComparisonPokemon(filteredPokemon, newComparisonPokemon)
-    } else {
       getPokemonDetailsForComparison(newComparisonPokemon.name)
-    }
+  }
+
+  const removePokemon = (id) => {
+    removeFromComparisonPokemon(id)
   }
 
     return (
@@ -32,6 +31,7 @@ function Comparison(props) {
         onClickDropDownItem={onClickDropDownItem} 
         pokemonForComparison={pokemonForComparison}
         pokemonDropDownData={pokemon.result}
+        removePokemon={removePokemon}
       />
     )
 }
@@ -46,7 +46,7 @@ const mapDispatchToProps = dispatch => ({
   getAllPokemon: () => dispatch(getAllPokemon()),
   getPokemonDetailsForComparison: pokemonName => dispatch(getPokemonDetailsForComparison(pokemonName)),
   getPokemonByGeneration: generationId => dispatch(getPokemonByGeneration(2)),
-  removeFromComparisonPokemon: (filteredPokemon, newPokemon) => dispatch(removeFromComparisonPokemon(filteredPokemon, newPokemon))
+  removeFromComparisonPokemon: id => dispatch(removeFromComparisonPokemon(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comparison)

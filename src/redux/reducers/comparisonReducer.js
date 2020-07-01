@@ -3,33 +3,29 @@ const pokemonInitialState = {
   }
   
   export default (state = pokemonInitialState, action) => {
-     switch (action.type) {
-            case 'REMOVE_POKEMON_FOR_COMPARISON':
-              return {
-                ...state,
-                pokemonForComparison: action.payload.filteredPokemon
-              }
-              case 'GET_POKEMON_DETAILS_FOR_COMPARISON':
-                return {
-                  ...state,
-                  isLoading: true
-                }
-          case 'GET_POKEMON_DETAILS_FOR_COMPARISON_SUCCESS':
-            let newComparisonPokemon = action.payload
-            if(state.pokemonForComparison.includes(undefined)) {
-              newComparisonPokemon = state.pokemonForComparison.splice(state.pokemonForComparison.indexOf(undefined), 1, action.payload)
-            }
-            return {
-              ...state,
-              pokemonForComparison: [...state.pokemonForComparison, newComparisonPokemon],
-              isLoading: false
-            }
-            case 'GET_POKEMON_DETAILS_FOR_COMPARISON_FAILED':
-              return {
-                ...state,
-                isLoading: false
-              }
-       default:
+    switch (action.type) {
+    case 'REMOVE_POKEMON_FOR_COMPARISON':
+      return {
+        ...state,
+        pokemonForComparison: state.pokemonForComparison.filter(pokemon => pokemon.id !== action.id)
+      }
+    case 'GET_POKEMON_DETAILS_FOR_COMPARISON':
+      return {
+        ...state,
+        isLoading: true
+      }
+    case 'GET_POKEMON_DETAILS_FOR_COMPARISON_SUCCESS':
+      return {
+        ...state,
+        pokemonForComparison: [...state.pokemonForComparison, action.payload],
+        isLoading: false
+      }
+    case 'GET_POKEMON_DETAILS_FOR_COMPARISON_FAILED':
+          return {
+            ...state,
+            isLoading: false
+          }
+    default:
         return state
       }
      }

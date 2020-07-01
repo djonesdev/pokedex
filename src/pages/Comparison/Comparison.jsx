@@ -19,9 +19,12 @@ export default function ComparisonView(props) {
             <Col>
               {props.pokemonForComparison[0] && props.pokemonForComparison[0].name &&
                 <div>
+                  <Col>
                     <p className="capitalize">{props.pokemonForComparison[0].name}</p>
-                      <img alt={props.pokemonForComparison[0].name} src={props.pokemonForComparison[0].sprites.front_default} />
-                      <img alt={props.pokemonForComparison[0].name} src={props.pokemonForComparison[0].sprites.back_default} />                  
+                    <button onClick={() => props.removePokemon(props.pokemonForComparison[0].id)}>Remove pokemon</button>
+                  </Col>
+                    <img alt={props.pokemonForComparison[0].name} src={props.pokemonForComparison[0].sprites.front_default} />
+                    <img alt={props.pokemonForComparison[0].name} src={props.pokemonForComparison[0].sprites.back_default} />                  
                     <StatsChart2 data={props.pokemonForComparison[0].stats} />
                 </div>
               }
@@ -29,10 +32,13 @@ export default function ComparisonView(props) {
             <Col sm>
               {props.pokemonForComparison[1] && props.pokemonForComparison[1].name &&
                 <div>
+                  <Col>
                     <p className="capitalize">{props.pokemonForComparison[1].name}</p>
-                      <img alt={props.pokemonForComparison[1].name} src={props.pokemonForComparison[1].sprites.front_default} />
-                      <img alt={props.pokemonForComparison[1].name} src={props.pokemonForComparison[1].sprites.back_default} />
-                    <StatsChart2 data={props.pokemonForComparison[1].stats} />
+                    <button onClick={() => props.removePokemon(props.pokemonForComparison[1].id)}>Remove pokemon</button>
+                  </Col>
+                  <img alt={props.pokemonForComparison[1].name} src={props.pokemonForComparison[1].sprites.front_default} />
+                  <img alt={props.pokemonForComparison[1].name} src={props.pokemonForComparison[1].sprites.back_default} />
+                  <StatsChart2 data={props.pokemonForComparison[1].stats} />
                 </div>
               }
             </Col>

@@ -27,6 +27,6 @@ export const addToFavourites = pokemon => ({ type: addToFavouritesAction, payloa
 
 export const removeFromFavourites = pokemonIndex => ({ type: removeFromFavouritesAction, payload: pokemonIndex})
 
-export const removeFromComparisonPokemon = (filteredPokemon, newPokemon) => ({ type: removeFromComparisonPokemonAction, payload: { filteredPokemon, newPokemon}})
+export const removeFromComparisonPokemon = id => ({ type: removeFromComparisonPokemonAction, id })
 
 export const getPokemonDetailsForComparison = pokemonName => ({ type: getPokemonDetailsForComparisonAction, pokemonName })
