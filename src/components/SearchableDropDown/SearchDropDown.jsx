@@ -7,13 +7,12 @@ const SearchDropDown = (props) => {
 
   const toggle = () => setDropdownOpen(prevState => !prevState)
 
-
   useEffect(() => {
     setFilteredItems(props.items)
   }, [props.items])
 
   const handleOnChange = (event) => {
-    const filteredItemsList = props.items.filter(item => item.includes(event.target.value))
+    const filteredItemsList = props.items.filter(item => item.name.includes(event.target.value))
     setFilteredItems(filteredItemsList)
   }
 

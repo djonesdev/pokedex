@@ -65,12 +65,12 @@ function HomePage(props) {
             )}
           </Row>
           <Row>
-        <Col xs={1} sm={3}>
-            <NextPageButtonContainer>
-              {hasAvaliableNextPage  && <HomePageButton onClick={props.getNextPokemonPage}>Get next page of Pokemon!</HomePageButton>}
-              {hasAvailablePreviousPage  && <HomePageButton onClick={props.getPreviousPokemonPage}>Get previous page of Pokemon!</HomePageButton>}
-            </NextPageButtonContainer>
-          </Col>
+            <Col xs={1} sm={3}>
+              <NextPageButtonContainer>
+                {hasAvaliableNextPage  && <HomePageButton onClick={props.getNextPokemonPage}>Get next page of Pokemon!</HomePageButton>}
+                {hasAvailablePreviousPage  && <HomePageButton onClick={props.getPreviousPokemonPage}>Get previous page of Pokemon!</HomePageButton>}
+              </NextPageButtonContainer>
+            </Col>
           </Row>
         </Grid>
       </PokemonListContainer>
