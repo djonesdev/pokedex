@@ -26,7 +26,7 @@ const StyledLink = styled(Link)`
 export default function InfoCard({ name, onClick, url }) {
     return (
         <InfoCardContainer onClick={() => onClick(url)}>
-            <StyledLink className="capitalize" to='/detail'>{name}</StyledLink>
+            <StyledLink className="capitalize" to={`/detail/${name}`}>{name}</StyledLink>
         </InfoCardContainer>
     )
 }

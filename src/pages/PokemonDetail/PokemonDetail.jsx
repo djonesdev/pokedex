@@ -14,6 +14,12 @@ const TypeImage = styled.img`
     width 10%;
 `
 
+const FavouritesStar = styled.img`
+    height: 3%;
+    width 5%;
+    margin-bottom: 1px;
+`
+
 const FavouritesButton = styled.button`
     font-size: 18px;
     height: 65px;
@@ -29,7 +35,7 @@ const FavouritesButton = styled.button`
     }
 `
 
-export default function PokemonDetailView({ selectedPokemon, isLoading, addToFavourites }) {
+export default function PokemonDetailView({ selectedPokemon, isLoading, addToFavourites, isFavourite }) {
     if(isLoading) return ( 
         <Container>
             <Spinner style={{ width: '3rem', height: '3rem', margin: 'auto', padding: 10 }} type="grow" />
@@ -40,11 +46,15 @@ export default function PokemonDetailView({ selectedPokemon, isLoading, addToFav
     return (
         <Container>
             <MarginedDiv>
-                <h2 className="capitalize">{selectedPokemon.name}</h2>
-                {selectedPokemon.types.map(typeDetails => <TypeImage src={Icons[`${typeDetails.type.name}Type`]} />)}
+                <Row>
+                    <h2 className="capitalize">{selectedPokemon.name}</h2>
+                    {isFavourite && <FavouritesStar src={Icons.favouriteStar}/>}
+                </Row>
             </MarginedDiv>
+                {selectedPokemon.types.map(typeDetails => <TypeImage src={Icons[`${typeDetails.type.name}Type`]} />)}
             <MarginedDiv>
-                <FavouritesButton 
+                {!isFavourite && <FavouritesButton 
+                    disabled={isFavourite}
                     onClick={() => addToFavourites({ 
                             name: selectedPokemon.name, 
                             sprite: selectedPokemon.sprites.front_default, 
@@ -53,7 +63,7 @@ export default function PokemonDetailView({ selectedPokemon, isLoading, addToFav
                     )}
                 >
                     Add To Favourties
-                </FavouritesButton>
+                </FavouritesButton>}
             </MarginedDiv>
             <MarginedDiv>
                 <Row around="xs">

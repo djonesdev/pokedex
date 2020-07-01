@@ -22,8 +22,6 @@ const SearchDropDown = (props) => {
     props.onClick(item, index)
   }
 
-  console.log('re render')
-
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle

@@ -18,7 +18,7 @@ const store = createStore(
 // TODO: only fire this function when actions that modify favourites are fired. 
 store.subscribe(() => {
   saveStateToLocalStorage({ 
-    pokemon:store.getState().pokemon 
+    pokemon: store.getState().pokemon 
   })
 })
 

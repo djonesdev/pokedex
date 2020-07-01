@@ -16,7 +16,7 @@ export const Routing = ({ store }) => (
         <hr />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/detail" component={PokemonDetails} />
+          <Route path="/detail/:name" component={PokemonDetails} />
           <Route path="/favourites" component={Favourites} />
           <Route path="/compare" component={Comparison} />
         </Switch>  

@@ -17,7 +17,6 @@ const pokemonInitialState = {
           case 'GET_POKEMON_DETAILS_FOR_COMPARISON_SUCCESS':
             let newComparisonPokemon = action.payload
             if(state.pokemonForComparison.includes(undefined)) {
-              console.log(state.pokemonForComparison.indexOf(undefined), 'newComparison')
               newComparisonPokemon = state.pokemonForComparison.splice(state.pokemonForComparison.indexOf(undefined), 1, action.payload)
             }
             return {

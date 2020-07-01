@@ -12,7 +12,6 @@ class BarChart extends React.Component {
        }
         
         componentDidMount() {                
-          console.log(this.props.data, 'data')
             const chartWidth = 500;
             const chartHeight = 300;
         
