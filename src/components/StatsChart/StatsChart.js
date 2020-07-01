@@ -1,15 +1,11 @@
-import React from 'react';
-import * as d3 from 'd3';
+import React from 'react'
+import * as d3 from 'd3'
 
 import './StatsChart.css'
 
 // I tried to make my own chart using d3 here (first time practicing with it), It renders/shows data and is very basic so wasn't too happy with it
 
 class BarChart extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-       }
         
         componentDidMount() {                
             const chartWidth = 500;

@@ -10,7 +10,7 @@ const SearchDropDown = (props) => {
 
   useEffect(() => {
     setFilteredItems(props.items)
-  }, [])
+  }, [props.items])
 
   const handleOnChange = (event) => {
     const filteredItemsList = props.items.filter(item => item.includes(event.target.value))

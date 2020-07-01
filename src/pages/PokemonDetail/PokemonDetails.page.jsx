@@ -2,18 +2,18 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import PokemonDetailsView from './PokemonDetail'
-import { selectSelectedPokemon, selectLoadingState, selectFavourites } from '../../selectors/selectPokemon'
+import { selectSelectedPokemon, selectLoadingState, selectFavourites } from 'redux/selectors'
 import { 
     getPokemonDetails,
     addToFavourites 
-  } from '../../actions/simpleAction'
+  } from 'redux/actions'
 
-function PokemonDetails({ selectedPokemon, isLoading, addToFavourites, state, favouritePokemon, match }) {
+function PokemonDetails({ selectedPokemon, isLoading, addToFavourites, favouritePokemon, match, location }) {
 
     useEffect(() => {
         getPokemonDetails(match.params.name)
     }, [match.params.name])
-    
+
     const isFavourite = favouritePokemon.some(pokemon => pokemon.id === selectedPokemon.id)
     return (
         <div>

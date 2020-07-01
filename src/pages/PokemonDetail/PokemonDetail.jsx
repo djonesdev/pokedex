@@ -3,7 +3,7 @@ import { Table } from 'reactstrap'
 import { Spinner, Row, Col, Container } from 'reactstrap'
 import styled from 'styled-components'
 
-import Icons from '../../styles/icons'
+import Icons from 'styles/icons'
 
 const MarginedDiv = styled.div`
     margin-top: 5%;
@@ -41,8 +41,6 @@ export default function PokemonDetailView({ selectedPokemon, isLoading, addToFav
             <Spinner style={{ width: '3rem', height: '3rem', margin: 'auto', padding: 10 }} type="grow" />
         </Container>
     )
-    //TODO: redirect or call detailsfrom routeParams
-    if(!selectedPokemon) return null
     return (
         <Container>
             <MarginedDiv>
@@ -51,7 +49,7 @@ export default function PokemonDetailView({ selectedPokemon, isLoading, addToFav
                     {isFavourite && <FavouritesStar src={Icons.favouriteStar}/>}
                 </Row>
             </MarginedDiv>
-                {selectedPokemon.types.map(typeDetails => <TypeImage src={Icons[`${typeDetails.type.name}Type`]} />)}
+                {selectedPokemon.types.map((typeDetails, index) => <TypeImage key={index} src={Icons[`${typeDetails.type.name}Type`]} />)}
             <MarginedDiv>
                 {!isFavourite && <FavouritesButton 
                     disabled={isFavourite}
@@ -67,15 +65,13 @@ export default function PokemonDetailView({ selectedPokemon, isLoading, addToFav
             </MarginedDiv>
             <MarginedDiv>
                 <Row around="xs">
-                    {Object.keys(selectedPokemon.sprites).map(function(key, index) {
-                        if(selectedPokemon.sprites[key]) {
-                                return (
-                                    <Col xs={2} key={key}>
-                                        <img alt={key} src={selectedPokemon.sprites[key]} />
-                                    </Col>
-                                )
-                        }
-                    })}
+                    {Object.keys(selectedPokemon.sprites).map((key, index)  => (
+                        selectedPokemon.sprites[key] && 
+                            <Col xs={2} key={index}>
+                                <img alt='pokemonSprite' src={selectedPokemon.sprites[key]} />
+                            </Col>
+                        )
+                    )}
                 </Row>
             </MarginedDiv>
             <h4>Abilities</h4>

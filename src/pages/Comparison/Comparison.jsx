@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container, Row, Col } from 'reactstrap'
 
-import StatsChart2 from '../../components/StatsChart/StatsChart2'
-import SearchDropDown from '../../components/SearchableDropDown/SearchDropDown'
+import StatsChart2 from 'components/StatsChart/StatsChart2'
+import SearchDropDown from 'components/SearchableDropDown/SearchDropDown'
 
 export default function ComparisonView(props) {
     return (

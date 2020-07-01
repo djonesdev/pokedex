@@ -1,6 +1,6 @@
 import React from 'react'
 
-import CanvasJSReact from '../../lib/canvasjs.react'
+import CanvasJSReact from 'lib/canvasjs.react'
 
 export default function StatsChart2(props) {
     const pokemonStatData = props.data.map(stat => ({ label: stat.stat.name, y: stat.base_stat}))

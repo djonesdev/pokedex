@@ -1,6 +1,6 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import styled from 'styled-components';
+import React from "react"
+import { NavLink } from "react-router-dom"
+import styled from 'styled-components'
 
 const LinkContainer = styled.div`
   background: #FF0000;

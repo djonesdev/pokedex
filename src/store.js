@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import createSagaMiddleware from 'redux-saga';
+import createSagaMiddleware from 'redux-saga'
 
-import rootReducer from './reducers/rootReducer'
-import rootSaga from './sagas/sagas'
+import rootReducer from './redux/reducers/rootReducer'
+import rootSaga from './redux/sagas/sagas'
 import { loadStateFromLocalStorage, saveStateToLocalStorage } from './localStorage'
 
 const sagaMiddleware = createSagaMiddleware()
@@ -14,7 +14,6 @@ const store = createStore(
   rootReducer, localStorageState, composeEnhancers(applyMiddleware(sagaMiddleware))
 )
 
-// Only want to save the favourites state for now
 // TODO: only fire this function when actions that modify favourites are fired. 
 store.subscribe(() => {
   saveStateToLocalStorage({ 
@@ -23,7 +22,5 @@ store.subscribe(() => {
 })
 
 sagaMiddleware.run(rootSaga);
-
-
 
 export default store

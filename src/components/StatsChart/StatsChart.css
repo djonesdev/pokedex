@@ -4,7 +4,8 @@
     display: inline-block;
     background-color: blue;
     margin: 2px;
-  }
+}
+
 .bar:hover {
   fill: brown;
 }

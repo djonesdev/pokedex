@@ -6,7 +6,7 @@ export const selectPreviousPokemonPageUrl = state => state.pokemon.previousUrl
 
 export const selectSelectedPokemon = state => state.pokemon.selectedPokemon
 
-export const selectLoadingState = state => state.pokemon.loading
+export const selectLoadingState = state => state.pokemon.isLoading
 
 export const selectFavourites = state => state.pokemon.favouritePokemon
 

@@ -1,7 +1,7 @@
 import { takeLatest, put, select } from 'redux-saga/effects'
 
-import config from '../config'
-import pokemonApi from '../api/pokemonApi'
+import config from 'config'
+import pokemonApi from 'api/pokemonApi'
 import { 
   getPokemonFailedAction, 
   getPokemonSuccessAction, 
@@ -16,7 +16,7 @@ import {
   getPokemonDetailsForComparisonSuccessAction, 
   getPokemonDetailsForComparisonFailedAction
 } from '../actions/actionTypes'
-import { selectNextPokemonPageUrl, selectPreviousPokemonPageUrl } from '../selectors/selectPokemon' 
+import { selectNextPokemonPageUrl, selectPreviousPokemonPageUrl } from 'redux/selectors' 
 
 export function* getPokemon() {
   try {

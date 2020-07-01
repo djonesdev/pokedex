@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { selectFavourites } from '../../selectors/selectPokemon'
 import { 
   getPokemonByGeneration,
   getPokemonDetailsForComparison, 
   removeFromComparisonPokemon, 
   getAllPokemon,
-} from '../../actions/simpleAction'
-import { selectPokemon, selectComparisonState } from '../../selectors/selectPokemon'
+} from 'redux/actions'
+import { selectPokemon, selectComparisonState, selectFavourites } from 'redux/selectors'
 import ComparisonView from './Comparison'
 
 function Comparison(props) {

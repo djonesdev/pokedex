@@ -2,15 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import FavouritesView from './Favourites'
-import { selectFavourites } from '../../selectors/selectPokemon'
-import { removeFromFavourites } from '../../actions/simpleAction'
-import {  getPokemonDetails } from '../../actions/simpleAction'
+import { selectFavourites } from 'redux/selectors'
+import { removeFromFavourites, getPokemonDetails } from 'redux/actions'
+
 
 function Favourites({ favouritePokemon, removeFromFavourites, getPokemonDetails, history }) {
-
-    const onClickFavourite = (url) => {
+ 
+    const onClickFavourite = (url, name) => {
         getPokemonDetails(url)
-        history.push('/detail'); 
+        history.push(`detail/${name}`)
     }
 
     return (

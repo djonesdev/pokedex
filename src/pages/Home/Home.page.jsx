@@ -4,15 +4,15 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import styled from 'styled-components'
 import { Spinner } from 'reactstrap'
 
-import InfoCard from '../../components/InfoCard'
+import InfoCard from 'components/InfoCard'
 import { 
   getPokemon, 
   getPokemonByGeneration,
   getPokemonDetails, 
   getNextPokemonPage, 
   getPreviousPokemonPage, 
-} from '../../actions/simpleAction'
-import { selectSelectedPokemon, selectLoadingState, selectPokemon } from '../../selectors/selectPokemon'
+} from 'redux/actions'
+import { selectSelectedPokemon, selectLoadingState, selectPokemon } from 'redux/selectors'
 
 const HomePageButton = styled.button`
   margin: 30px;
@@ -45,7 +45,7 @@ const renderGenerationButtons = (getPokemonByGeneration) => {
   return container
 }
 
-function Home(props) {
+function HomePage(props) {
   const { getPokemon, getPokemonByGeneration } = props
   const hasAvaliableNextPage = props.pokemon.nextUrl
   const hasAvailablePreviousPage = props.pokemon.previousUrl
@@ -93,4 +93,4 @@ const mapDispatchToProps = dispatch => ({
   getPokemonDetails: url => dispatch(getPokemonDetails(url))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

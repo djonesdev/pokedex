@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import pokemon from './simpleReducer'
+import pokemon from './pokemonReducer'
 import comparison from './comparisonReducer'
 
 export default combineReducers({
