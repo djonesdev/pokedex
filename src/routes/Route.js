@@ -3,7 +3,7 @@ import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import { Header } from 'components'
-import { PokemonDetails, HomePage, Favourites, Comparison } from 'pages'
+import { PokemonDetails, HomePage, Favourites, Comparison, ErrorPage } from 'pages'
 
 export const Routing = ({ store, location }) => (
   <Provider store={store}>
@@ -16,6 +16,7 @@ export const Routing = ({ store, location }) => (
           <Route path="/detail/:name" component={PokemonDetails} />
           <Route path="/favourites" component={Favourites} />
           <Route path="/compare" component={Comparison} />
+          <Route path="/error" component={ErrorPage} />
         </Switch>  
       </div>
     </Router>

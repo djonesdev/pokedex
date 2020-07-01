@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import styled from 'styled-components'
@@ -13,6 +13,7 @@ import {
   getPreviousPokemonPage, 
 } from 'redux/actions'
 import { selectSelectedPokemon, selectLoadingState, selectPokemon } from 'redux/selectors'
+import ErrorPage from '../ErrorPage/ErrorPage'
 
 const HomePageButton = styled.button`
   margin: 30px;
@@ -50,6 +51,12 @@ function HomePage(props) {
   const hasAvaliableNextPage = props.pokemon.nextUrl
   const hasAvailablePreviousPage = props.pokemon.previousUrl
 
+  useEffect(() => {
+    getPokemon()
+  }, [getPokemon])
+
+  if(!props.pokemon.result) return <ErrorPage />
+  
   return (
     <div>
       <PokemonListContainer>

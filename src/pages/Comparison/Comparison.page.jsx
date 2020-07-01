@@ -9,6 +9,7 @@ import {
 } from 'redux/actions'
 import { selectPokemon, selectComparisonState, selectFavourites } from 'redux/selectors'
 import ComparisonView from './Comparison'
+import ErrorPage from '../ErrorPage/ErrorPage'
 
 function Comparison(props) {
   const { getAllPokemon, removeFromComparisonPokemon, getPokemonDetailsForComparison, pokemon, pokemonForComparison } = props
@@ -25,6 +26,8 @@ function Comparison(props) {
   const removePokemon = (id) => {
     removeFromComparisonPokemon(id)
   }
+
+  if(!pokemon.result) return <ErrorPage />
 
     return (
       <ComparisonView  

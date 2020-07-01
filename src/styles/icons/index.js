@@ -18,5 +18,6 @@ export default {
     rockType: require('./type_ROCK.png'),
     steelType: require('./type_STEEL.png'),
     waterType: require('./type_WATER.png'),
-    favouriteStar: require('./favouriteStar.png')
+    favouriteStar: require('./favouriteStar.png'), 
+    surprisedPikachu: require('./surprisedPikachu.jpg')
 }
