@@ -20,10 +20,8 @@ export default function ComparisonView(props) {
               {props.pokemonForComparison[0] && props.pokemonForComparison[0].name &&
                 <div>
                     <p className="capitalize">{props.pokemonForComparison[0].name}</p>
-                    <Row>
-                        <img alt={props.pokemonForComparison[0].name} src={props.pokemonForComparison[0].sprites.front_default} />
-                        <img alt={props.pokemonForComparison[0].name} src={props.pokemonForComparison[0].sprites.back_default} />
-                    </Row>
+                      <img alt={props.pokemonForComparison[0].name} src={props.pokemonForComparison[0].sprites.front_default} />
+                      <img alt={props.pokemonForComparison[0].name} src={props.pokemonForComparison[0].sprites.back_default} />                  
                     <StatsChart2 data={props.pokemonForComparison[0].stats} />
                 </div>
               }
@@ -32,10 +30,8 @@ export default function ComparisonView(props) {
               {props.pokemonForComparison[1] && props.pokemonForComparison[1].name &&
                 <div>
                     <p className="capitalize">{props.pokemonForComparison[1].name}</p>
-                    <Row>
-                        <img alt={props.pokemonForComparison[1].name} src={props.pokemonForComparison[1].sprites.front_default} />
-                        <img alt={props.pokemonForComparison[1].name} src={props.pokemonForComparison[1].sprites.back_default} />
-                    </Row>
+                      <img alt={props.pokemonForComparison[1].name} src={props.pokemonForComparison[1].sprites.front_default} />
+                      <img alt={props.pokemonForComparison[1].name} src={props.pokemonForComparison[1].sprites.back_default} />
                     <StatsChart2 data={props.pokemonForComparison[1].stats} />
                 </div>
               }

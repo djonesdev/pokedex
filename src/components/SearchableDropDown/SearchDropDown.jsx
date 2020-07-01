@@ -10,7 +10,7 @@ const SearchDropDown = (props) => {
 
   useEffect(() => {
     setFilteredItems(props.items)
-  }, [props.items])
+  }, [])
 
   const handleOnChange = (event) => {
     const filteredItemsList = props.items.filter(item => item.includes(event.target.value))
@@ -21,6 +21,8 @@ const SearchDropDown = (props) => {
     toggle()
     props.onClick(item, index)
   }
+
+  console.log('re render')
 
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
@@ -48,7 +50,7 @@ const SearchDropDown = (props) => {
           },
         },
     }}>
-        {filteredItems.map((item, index) => <DropdownItem onClick={() => handleClick(item, props.index)} key={index}>{item.name}</DropdownItem>)}
+        {filteredItems && filteredItems.map((item, index) => <DropdownItem onClick={() => handleClick(item, props.index)} key={index}>{item.name}</DropdownItem>)}
       </DropdownMenu>
     </Dropdown>
   )

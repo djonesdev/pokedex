@@ -12,33 +12,27 @@ import { selectPokemon, selectComparisonState } from '../../selectors/selectPoke
 import ComparisonView from './Comparison'
 
 function Comparison(props) {
-
-  const[pokemonForComparison, setPokemonForComparison] = useState([])
-
-  useEffect(() => {
-    props.getAllPokemon()
-  }, [props])
+  const { getAllPokemon, removeFromComparisonPokemon, getPokemonDetailsForComparison, pokemon, pokemonForComparison } = props
 
   useEffect(() => {
-    setPokemonForComparison([ ...props.pokemonForComparison ])
-  }, [props])
+    getAllPokemon()
+  }, [getAllPokemon])
+
   
   const onClickDropDownItem = (newComparisonPokemon, index) => {
     if(pokemonForComparison.length >= 2) {
       const filteredPokemon = pokemonForComparison.filter(pokemon => pokemon.name !== pokemonForComparison[index].name)
-      props.removeFromComparisonPokemon(filteredPokemon, newComparisonPokemon)
+      removeFromComparisonPokemon(filteredPokemon, newComparisonPokemon)
     } else {
-      props.getPokemonDetailsForComparison(newComparisonPokemon.name)
+      getPokemonDetailsForComparison(newComparisonPokemon.name)
     }
   }
 
-  const isDropDownDisabled = props.pokemonForComparison.length >= 2
     return (
-      <ComparisonView 
-        dropDownDisabled={isDropDownDisabled} 
+      <ComparisonView  
         onClickDropDownItem={onClickDropDownItem} 
-        pokemonForComparison={props.pokemonForComparison}
-        pokemonDropDownData={props.pokemon.result}
+        pokemonForComparison={pokemonForComparison}
+        pokemonDropDownData={pokemon.result}
       />
     )
 }

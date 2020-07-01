@@ -9,6 +9,7 @@ export default function StatsChart2(props) {
         title: {
           text: "Stats"
         },
+        animationEnabled: true,
         data: [{				
                   type: "column",
                   dataPoints: pokemonStatData
