@@ -11,7 +11,11 @@ import {
 function PokemonDetails({ selectedPokemon, isLoading, addToFavourites }) {
     return (
         <div>
-            <PokemonDetailsView selectedPokemon={selectedPokemon} addToFavourites={addToFavourites} isLoading={isLoading}/>
+            <PokemonDetailsView 
+                selectedPokemon={selectedPokemon} 
+                addToFavourites={addToFavourites} 
+                isLoading={isLoading}
+            />
         </div>
     )
 }

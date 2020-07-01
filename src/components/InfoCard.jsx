@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {
-    Link,
-  } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const InfoCardContainer = styled.div`
     background: #FF0000;
@@ -25,7 +23,7 @@ const StyledLink = styled(Link)`
   }
 `
 
-export default function InfoCard({ name, onClick, url, index }) {
+export default function InfoCard({ name, onClick, url }) {
     return (
         <InfoCardContainer onClick={() => onClick(url)}>
             <StyledLink className="capitalize" to='/detail'>{name}</StyledLink>

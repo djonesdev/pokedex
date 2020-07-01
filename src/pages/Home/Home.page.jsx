@@ -57,7 +57,7 @@ function Home(props) {
         {renderGenerationButtons(getPokemonByGeneration)}
         <Grid fluid>
           <Row>
-            {props.isLoading ? <Spinner style={{ width: '3rem', height: '3rem', margin: 'auto', padding: 10 }} type="grow" />: props.pokemon.result  && props.pokemon.result && 
+            {props.isLoading ? <Spinner style={{ width: '3rem', height: '3rem', margin: 'auto', padding: 10 }} type="grow" /> : props.pokemon.result  && props.pokemon.result && 
               props.pokemon.result.map((pokemon, index) => 
                 <Col xs={12} sm={3} key={index}>
                   <InfoCard index={index} name={pokemon.name} onClick={props.getPokemonDetails} url={pokemon.url}/>

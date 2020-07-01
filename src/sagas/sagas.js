@@ -90,16 +90,20 @@ export function* getPokemonStatForComparison(payload) {
 
 export function* getPokemonDetails(actionPayload) {
   const { payload } = actionPayload
+  console.log(actionPayload.payload, 'saga payload')
   let detailsUrl = ''
   try {
     // I'm not a fan of this, but for some reason the details url provided when filtering by generation goes to /pokemon-species/:id and doesn't contain sprites
     // But when calling all pokemon the detail url provided (/pokemon/:id) does
     if(payload.includes('pokemon-species')) {
       const pokemonId = payload.split("pokemon-species/").pop()
+      console.log('wrong bit saga payloadB')
       detailsUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
     } else {
       detailsUrl = payload
+      console.log('right bit saga payloadB')
     }
+    console.log(detailsUrl, 'saga payload detailsUrl')
     const pokemonDetails = yield pokemonApi.getPokemonDetails(detailsUrl)
     if(!pokemonDetails.id) console.log('no id for some reasons')
     yield put({ type: getPokemonDetailsSuccessAction, payload: pokemonDetails.data })
